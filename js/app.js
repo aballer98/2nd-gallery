@@ -1,6 +1,5 @@
  //at this stage all the dom element is targeted and contained into variables 
 let body = document.querySelector('body');
-let wrapper = document.querySelector('.wrapper');
 let heroImage = document.querySelector('#images');
 let heroDetail =document.querySelector('.details');
 let integrify =document.querySelector('.integrify');
@@ -16,7 +15,7 @@ let x=0;
 
 // this if the funtion that incerts the image and details fron the photosinfo object
 function nextImage(){
-img.src = './media/' + photosInfo[x].src;
+img.src = '/media/' + photosInfo[x].src;
 heroImage.appendChild(img);
 integrify.textContent=" Integrify Academy 2018"
 integrify.classList.add("tada") 
@@ -59,26 +58,23 @@ let title = 'Title: ' +photosInfo[x].title;
  heroDetail.appendChild(h4[7]);
 
  
-setTimeout(()=>{integrify.classList.remove("tada")},500)
 
 }
- // this one calls the next function when the page loads
-window.onload = nextImage;
 
 //click listener for next icon 
-nextIcon.addEventListener('click', function() {
-	x++;
-	
-	
+
+
+  nextIcon.addEventListener('click', function() {
+ nextImage();
+ x++;
+
+if (x === photosInfo.length) {
+   x = 0
+ }
+
+});
+
   
-	if (x === photosInfo.length) {
-	  x = 0
-	}
-	nextImage();
-	img.classList.remove("fadeInRight")
-	img.classList.add("fadeInLeft")
-	
-  });
 // click listener for previous button 
   prevIcon.addEventListener('click', function() {
 	if (x >0) {
@@ -92,28 +88,14 @@ nextIcon.addEventListener('click', function() {
 	else {
 		nextImage()
 	}
-img.classList.remove("fadeInLeft")
-img.classList.add("fadeInRight")
-	
-	
+
   });
 
 
 // this function change the wrapper back ground in every 4 seconds 
+let bkgndTogler = 1;
 
-//   function bgImg() {
-// 	let c = 2;
-  
-// 	setInterval(() => {
-// 	  let imgUrl = "./media/" + 'group' + c + '.jpg';
-// 	  body.style.backgroundImage = `url(${imgUrl})`;
-	  
-// 	  if (c === 5) {
-// 		c = 2;
-// 	  }
-// 	  c++;
-  
-// 	}, 4000);
-// }
-
-// bgImg();
+setInterval(function(){ 
+	document.body.id = "b" + (bkgndTogler > 2 ? 1 :bkgndTogler);
+	bkgndTogler++;
+   }, 2000);
